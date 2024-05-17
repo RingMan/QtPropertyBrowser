@@ -51,6 +51,10 @@ add_library(${TARGET_NAME}
 
 target_link_libraries(${TARGET_NAME} Qt5::Widgets)
 
+set_target_properties(${TARGET_NAME} PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release)
+
 ######################### Installation Stuff ###########################
 include(GenerateExportHeader)
 generate_export_header(${TARGET_NAME})

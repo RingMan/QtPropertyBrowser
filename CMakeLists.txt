@@ -1,9 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.11)
 PROJECT(QtPropertyBrowser)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 ########################### Misc. Configs ##############################
 # Add custom cmake files folder
-SET (PROJECT_CMAKE_DIR ${PROJECT_SOURCE_DIR}/cmake)
+SET (PROJECT_CMAKE_DIR ${CMAKE_SOURCE_DIR}/cmake)
 SET (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_CMAKE_DIR}")
 
 # Add custom Compile Settings and flags
@@ -16,6 +18,7 @@ INCLUDE(InstallSettings)
 
 # Add QT dependencies
 FIND_PACKAGE(Qt5Widgets REQUIRED)
+get_filename_component(Qt5BinDir ${Qt5Widgets_DIR}/../../../bin ABSOLUTE)
 
 ######################### Add Primary Targets ##########################
 ADD_SUBDIRECTORY(src)
@@ -48,4 +51,5 @@ IF(Qt5Widgets_FOUND)
   MESSAGE(STATUS "QT COMPILE DEFS:    ${Qt5Widgets_COMPILE_DEFINITIONS}")
   MESSAGE(STATUS "QT DEFS:            ${Qt5Widgets_DEFINITIONS}")
   MESSAGE(STATUS "QT EXE FLAGS:       ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+  MESSAGE(STATUS "QT BIN DIR:         ${Qt5BinDir}")
 ENDIF()
